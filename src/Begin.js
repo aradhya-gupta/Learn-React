@@ -39,7 +39,8 @@ function Begin() {
               <li>Single click on a tile below for filling a cross while double click for zero. </li>
               <li>The player who first fills a row/column/diagonal with all zeroes/crosses wins.</li>
             </ul>
-            <h4>GOOD LUCK!</h4>
+            <h4>
+            GOOD LUCK!</h4>
           <br/><br/>
           </div>
         </Collapse>
