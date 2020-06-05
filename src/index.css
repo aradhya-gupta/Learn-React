@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Times New Roman', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,4 +10,33 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App-header{
+  background-image: url('https://www.robinwieruch.de/static/31da70f3b3191336fc081d5ab512dca9/9842e/banner.jpg');
+  background-repeat: no-repeat;
+  background-position: 240px;
+  background-color: black;
+}
+
+.ticbut{
+  width: 140px;
+  height: 140px;
+}
+
+div.col-auto{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h1.cross{
+  font-size: 100px;
+}
+
+h1.zero{
+  font-size: 100px;
+}
+
+h1.begin_head{
+  font-family: 'Times New Roman';
 }
