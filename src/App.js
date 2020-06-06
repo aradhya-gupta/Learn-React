@@ -16,9 +16,10 @@ function App() {
       <div><br/><br/><hr/>
       <h1 className="begin_head">IT IS A TWO-PLAYER FUN GAME!</h1>
       <hr/></div>
-      
+	
       <Begin/>
       <Grid/>
+
     </div>
   );
 }

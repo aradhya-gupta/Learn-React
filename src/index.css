@@ -12,12 +12,7 @@ code {
     monospace;
 }
 
-.App-header{
-  background-image: url('https://www.robinwieruch.de/static/31da70f3b3191336fc081d5ab512dca9/9842e/banner.jpg');
-  background-repeat: no-repeat;
-  background-position: 240px;
-  background-color: black;
-}
+
 
 .ticbut{
   width: 140px;
