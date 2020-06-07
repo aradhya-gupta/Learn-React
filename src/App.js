@@ -2,7 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Grid from './Grid.js'
-
 import Begin from './Begin.js'
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>TIC-TAC-TOE</h1>
+        <h1><strong>TIC-TAC-TOE</strong></h1>
       </header>
 
       <div><br/><br/><hr/>
@@ -19,7 +18,7 @@ function App() {
 	
       <Begin/>
       <Grid/>
-
+      
     </div>
   );
 }
