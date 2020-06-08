@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Grid from './Grid.js'
 import Begin from './Begin.js'
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
       <hr/></div>
 	
       <Begin/>
-      <Grid/>
+      
       
     </div>
   );

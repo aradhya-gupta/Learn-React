@@ -35,6 +35,7 @@ export default class InputNames extends Component {
                         <InputGroup.Text style={{ backgroundColor: "aqua", border: "solid black" }} > PLAYER2 </InputGroup.Text>
                     </InputGroup.Prepend>
                 </InputGroup>
+
             </div>
         )
     }

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import InputNames from './InputNames'
+import Grid from './Grid';
 
 function Begin() {
     const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ function Begin() {
           <br/>
             <h3>INSTRUCTIONS</h3>
             <ul>
-              <li>Player1 takes cross while player2 takes zero.</li>
+              <li>Player1 takes cross while Player2 takes zero.</li>
               <li>Single click on a tile below for filling a cross/zero</li>
               <li>The player who first fills a row/column/diagonal with all zeroes/crosses wins.</li>
             </ul>
@@ -34,6 +35,8 @@ function Begin() {
           <br/><br/>
           </div>
         </Collapse>
+
+        <Grid/>
       </>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-class Winner extends Component {
+export default class Tie extends Component {
     render() {
         return (
             <Modal
@@ -17,7 +17,7 @@ class Winner extends Component {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4>CONGRATULATIONS PLAYER {this.props.val}</h4>
+                    <h4>IT'S A TIE!</h4>
                     <p>
                          Hope you enjoyed the game!
                     </p>
@@ -26,11 +26,6 @@ class Winner extends Component {
                     <Button onClick={this.props.onHide}>New Game</Button>
                 </Modal.Footer>
             </Modal>
-
         )
     }
 }
-
-
-export default Winner;
-
