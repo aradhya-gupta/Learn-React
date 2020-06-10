@@ -35,3 +35,26 @@ h1.zero{
 h1.begin_head{
   font-family: 'Times New Roman';
 }
+
+@media screen and (max-width: 576px) {
+  .ticbut{
+    width: 80px;
+    height: 80px;
+  }
+  
+  div.col-auto{
+    padding: 2px;
+  }
+  
+  h1.cross{
+    font-size: 45px;
+  }
+  
+  h1.zero{
+    font-size: 45px;
+  }
+   
+ .inputNames{
+   flex-wrap: wrap;
+ }
+}
