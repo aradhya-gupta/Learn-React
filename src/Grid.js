@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { SocialMediaIconsReact } from 'social-media-icons-react';
-import ButtonContent from './ButtonContent.js'
+import Square from './Square.js'
 import Winner from './Winner.js'
 import Tie from './Tie.js'
 
@@ -21,7 +20,7 @@ export default class Grid extends Component {
         winner: 0
     }
 
-    changeState = (x, y, val) => {
+    changeSquareValue = (x, y, val) => {
         let board = this.state.board;
         board[x][y] = val;
         this.setState({ board });
@@ -75,73 +74,36 @@ export default class Grid extends Component {
             <Container fluid>
                 <Row>
                     <Col></Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={0} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={1} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={2} />
-
-                    </Col>
+                    {[0, 1, 2].map(v => (
+                        <Col xs="auto">
+                            <Square change={this.changeSquareValue} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={v} />
+                        </Col>
+                    ))}
                     <Col></Col>
                 </Row>
-
                 <Row>
                     <Col></Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={0} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={1} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={2} />
-
-                    </Col>
+                    {[0, 1, 2].map(v => (
+                        <Col xs="auto">
+                            <Square change={this.changeSquareValue} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={v} />
+                        </Col>
+                    ))}
                     <Col></Col>
                 </Row>
-
                 <Row>
                     <Col></Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={0} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={1} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={2} />
-
-                    </Col>
+                    {[0, 1, 2].map(v => (
+                        <Col xs="auto">
+                            <Square change={this.changeSquareValue} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={v} />
+                        </Col>
+                    ))}
                     <Col></Col>
                 </Row>
-
 
                 <Winner show={this.state.modalShow} onHide={this._refreshPage} val={this.state.winner} />
                 <Tie show={this.state.tie} onHide={this._refreshPage} />
 
                 <div><br /><br /><br /></div>
-                {/* Footer */}
-                <Row style={{ backgroundColor: "black" }}>
-                    <Col style={{ padding: "25px" }}>
-                        <h4 style={{ textAlign: "center", color: "white", margin: "0px" }}>ARADHYA <strong>GUPTA</strong></h4>
-                    </Col>
-                    <Col style={{ padding: "25px" }}>
-                        <SocialMediaIconsReact borderColor="rgba(245,239,239,1)" borderWidth="2" borderStyle="solid" icon="linkedin" iconColor="rgba(245,227,227,1)" backgroundColor="rgba(8,8,8,1)" iconSize="0" roundness="50%" url="https://www.linkedin.com/in/gupta-aradhya" size="36" />
-                        <span> </span>
-                        <SocialMediaIconsReact borderColor="rgba(245,239,239,1)" borderWidth="2" borderStyle="solid" icon="github" iconColor="rgba(245,227,227,1)" backgroundColor="rgba(8,8,8,1)" iconSize="3" roundness="50%" url="https://github.com/aradhya-gupta/" size="36" />
-                        <span> </span>
-                        <SocialMediaIconsReact borderColor="rgba(245,239,239,1)" borderWidth="2" borderStyle="solid" icon="facebook" iconColor="rgba(245,227,227,1)" backgroundColor="rgba(8,8,8,1)" iconSize="0" roundness="50%" url="https://www.facebook.com/aradhya.gupta0308" size="36" />
-                    </Col>
-                </Row>
             </Container>
         )
     }

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Begin from './Begin.js'
 import Grid from './Grid';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
 	
       <Begin/>
       <Grid />
-      
+      <Footer />
     </div>
   );
 }
