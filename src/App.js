@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Begin from './Begin.js'
+import Grid from './Grid';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <hr/></div>
 	
       <Begin/>
-      
+      <Grid />
       
     </div>
   );

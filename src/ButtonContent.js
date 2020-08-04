@@ -5,33 +5,23 @@ export default class ButtonContent extends Component {
 
     state = {
         content: <h1>.</h1>,
+        clicked: false
     }
-    handleClick1 = () => {
-        this.setState({ content: <h1 className="cross">X</h1> });
+    handleClick1 = (turn) => {
+        this.setState({ content: <h1 className="cross">{turn % 2 !== 0 ? 'X' : 'O'}</h1> });
     }
-
-    handleClick2 = () => {
-        this.setState({ content: <h1 className="zero">O</h1> });
-    }
-
-    handle = () => {
-        if (this.props.turn % 2 !== 0) {  //in odd turn cross is displayed
-            this.props.change(this.props.x, this.props.y, 1);
-            this.handleClick1();
-            this.props.turnChange();
-        }
-        else {
-            this.props.change(this.props.x, this.props.y, 2);
-            this.handleClick2();
-            this.props.turnChange();
-        }
+    handleClick = () => {
+        const { turn, change, turnChange } = this.props;
+        if (turn % 2 !== 0) change(this.props.x, this.props.y, 1);
+        else change(this.props.x, this.props.y, 2);
+        this.handleClick1(turn);
+        turnChange();
+        this.setState({clicked: true});
     }
 
     render() {
         return (
-            <div>
-                <Button className="ticbut" variant="dark" onClick={this.handle}  >{this.state.content}</Button>
-            </div>
+                <Button className="ticbut" variant="dark" onClick={this.handleClick}  disabled={this.state.clicked}>{this.state.content}</Button>
         )
     }
 }

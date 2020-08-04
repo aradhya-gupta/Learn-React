@@ -10,145 +10,56 @@ import Tie from './Tie.js'
 export default class Grid extends Component {
 
     state = {
-        a00: 0, a01: 0, a02: 0, a10: 0, a11: 0, a12: 0, a20: 0, a21: 0, a22: 0,
+        board: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ],
         turn: 1,
         modalShow: false,
         tie: false,
         winner: 0
     }
 
-
     changeState = (x, y, val) => {
-        if (x === 0) {
-            if (y === 0)
-                this.setState({ a00: val });
-            else if (y === 1)
-                this.setState({ a01: val });
-            else
-                this.setState({ a02: val });
-        }
-        else if (x === 1) {
-            if (y === 0)
-                this.setState({ a10: val });
-            else if (y === 1)
-                this.setState({ a11: val });
-            else
-                this.setState({ a12: val });
-        }
-        else {
-            if (y === 0)
-                this.setState({ a20: val });
-            else if (y === 1)
-                this.setState({ a21: val });
-            else
-                this.setState({ a22: val });
-        }
+        let board = this.state.board;
+        board[x][y] = val;
+        this.setState({ board });
     }
 
+    rowWin = (row) => {
+        let b = this.state.board;
+        if (b[row][0] === b[row][1] && b[row][1] === b[row][2] && b[row][0] !== 0)
+            return b[row][0];
+        return 0;
+    }
+    colWin = (col) => {
+        let b = this.state.board;
+        if (b[0][col] === b[1][col] && b[1][col] === b[2][col] && b[0][col] !== 0)
+            return b[0][col];
+        return 0;
+    }
+    diagWin = () => {
+        let b = this.state.board;
+        if (b[0][0] === b[1][1] && b[1][1] === b[2][2] && b[1][1] !== 0)
+            return b[1][1];
+        if (b[0][2] === b[1][1] && b[1][1] === b[2][0] && b[1][1] !== 0)
+            return b[1][1];
+        return 0;
+    }
     checkWin = () => {
-
-        let val = 1;
-        let flag = 0;
-        if (val === 1) {
-            // row win
-            if (this.state.a00 === this.state.a01 && this.state.a01 === this.state.a02 && this.state.a02 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            else if (this.state.a10 === this.state.a11 && this.state.a11 === this.state.a12 && this.state.a12 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a20 === this.state.a21 && this.state.a21 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            //column win
-            else if (this.state.a00 === this.state.a10 && this.state.a10 === this.state.a20 && this.state.a20 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a01 === this.state.a11 && this.state.a11 === this.state.a21 && this.state.a21 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a02 === this.state.a12 && this.state.a12 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            //diagonal win
-            else if (this.state.a00 === this.state.a11 && this.state.a11 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a02 === this.state.a11 && this.state.a11 === this.state.a20 && this.state.a20 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            //tie
-            else if (this.state.turn === 10) {
-                console.log("TIE");
-                this.setState({ tie: true });
-                flag = 1;
-            }
+        const { rowWin, colWin, diagWin } = this;
+        const winner = rowWin(0) ^ rowWin(1) ^ rowWin(2) ^ colWin(0) ^ colWin(1) ^ colWin(2) ^ diagWin();
+        if (winner) this.setState({ modalShow: true, winner });
+        //tie
+        if (this.state.turn === 10) {
+            console.log("TIE");
+            this.setState({ tie: true });
         }
-
-        val = val + 1;
-
-        if (val === 2 && flag !== 1) {
-            // row win
-            if (this.state.a00 === this.state.a01 && this.state.a01 === this.state.a02 && this.state.a02 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            else if (this.state.a10 === this.state.a11 && this.state.a11 === this.state.a12 && this.state.a12 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a20 === this.state.a21 && this.state.a21 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            //column win
-            else if (this.state.a00 === this.state.a10 && this.state.a10 === this.state.a20 && this.state.a20 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a01 === this.state.a11 && this.state.a11 === this.state.a21 && this.state.a21 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a02 === this.state.a12 && this.state.a12 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-
-            //diagonal win
-            else if (this.state.a00 === this.state.a11 && this.state.a11 === this.state.a22 && this.state.a22 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-            else if (this.state.a02 === this.state.a11 && this.state.a11 === this.state.a20 && this.state.a20 === val) {
-                console.log("victory" + val);
-                this.setState({ modalShow: true, winner: val })
-            }
-        }
-
-
-
     }
 
     changeTurn = () => {
-        this.setState((state) => {
-            this.setState({ turn: state.turn + 1 });
-        }
-        )
+        this.setState({ turn: this.state.turn + 1 });
     }
 
     _refreshPage() {
@@ -157,7 +68,7 @@ export default class Grid extends Component {
     }
 
     render() {
-        if (this.state.modalShow === false && this.state.tie === false )
+        if (this.state.modalShow === false && this.state.tie === false)
             this.checkWin();
 
         return (
@@ -165,32 +76,15 @@ export default class Grid extends Component {
                 <Row>
                     <Col></Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={0} y={0} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={0} />
 
                     </Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={0} y={1} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={1} />
 
                     </Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={0} y={2} />
-
-                    </Col>
-                    <Col></Col>
-                </Row>
-
-                <Row>
-                    <Col></Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={1} y={0} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={1} y={1} />
-
-                    </Col>
-                    <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={1} y={2} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={0} y={2} />
 
                     </Col>
                     <Col></Col>
@@ -199,15 +93,32 @@ export default class Grid extends Component {
                 <Row>
                     <Col></Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={2} y={0} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={0} />
 
                     </Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={2} y={1} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={1} />
 
                     </Col>
                     <Col xs="auto">
-                        <ButtonContent change={this.changeState.bind(this)} turn={this.state.turn} turnChange={this.changeTurn.bind(this)} check={this.checkWin.bind(this)} x={2} y={2} />
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={1} y={2} />
+
+                    </Col>
+                    <Col></Col>
+                </Row>
+
+                <Row>
+                    <Col></Col>
+                    <Col xs="auto">
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={0} />
+
+                    </Col>
+                    <Col xs="auto">
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={1} />
+
+                    </Col>
+                    <Col xs="auto">
+                        <ButtonContent change={this.changeState} turn={this.state.turn} turnChange={this.changeTurn} check={this.checkWin} x={2} y={2} />
 
                     </Col>
                     <Col></Col>
