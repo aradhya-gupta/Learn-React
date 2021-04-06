@@ -49,7 +49,11 @@ export default class Grid extends Component {
     checkWin = () => {
         const { rowWin, colWin, diagWin } = this;
         const winner = rowWin(0) ^ rowWin(1) ^ rowWin(2) ^ colWin(0) ^ colWin(1) ^ colWin(2) ^ diagWin();
-        if (winner) this.setState({ modalShow: true, winner });
+        if (winner){
+            let winner; 
+            if(this.state.turn % 2 === 1) winner = 2; else winner = 1; 
+            this.setState({ modalShow: true, winner });
+        }
         //tie
         if (this.state.turn === 10) {
             console.log("TIE");
