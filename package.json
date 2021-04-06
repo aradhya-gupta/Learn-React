@@ -12,7 +12,8 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "social-media-icons-react": "^1.0.10"
+    "social-media-icons-react": "^1.0.10",
+    "ssri": "^8.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
